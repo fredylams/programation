@@ -1,0 +1,240 @@
+
+import javax.swing.JOptionPane;
+
+public class frd {
+
+    private int totalbotos = 0;
+    int contadorTotal = 0;
+    int contador = 0;
+    String[] partidoPolitico = {"PRI", "PRD", "PAN"};
+    String[] seccion = {"S1", "S2", "S3", "S4", "S5"};
+    String[] candidatos = new String[3];
+    String[] localidadS1P1 = new String[4];
+    String[] observadores = new String[11];
+    int[] S1 = new int[4];
+    int[] S2 = new int[4];
+    int[] S3 = new int[4];
+    int[] S4 = new int[4];
+    int[] S5 = new int[4];
+
+    public static void main(String[] args) {
+        frd dato = new frd();
+        dato.registoCandidatos();
+        dato.inicioBotaciones();
+    }
+
+    public void registoCandidatos() {
+        for (int i = 0; i <= 2; i++) {
+            candidatos[i] = JOptionPane.showInputDialog("INTRODUZCA SU NOMBRE :");
+            String candidatoPartidoPolitico;
+            candidatoPartidoPolitico = (String) JOptionPane.showInputDialog(null, "SELECCIONE EL PARTIDO POLITICO AL QUE PERTENEZCA", "CANDIDATOS",
+                    JOptionPane.DEFAULT_OPTION, null, partidoPolitico, partidoPolitico[0]);
+            asignarCandidatoPartidoPolitico(candidatoPartidoPolitico, candidatos[i]);
+        }
+    }
+
+    public void asignarCandidatoPartidoPolitico(String partido, String nombre) {
+        System.out.println("PATIDO : " + partido + "  ->     CANDIDATO : " + nombre);
+    }
+
+    public void inicioBotaciones() {
+        String[] ob = {"VOTO", "OBSERVADOR"};
+        int contadorTotal = 0, continuar, o, y = 0;
+        for (o = 0; y != 1; o++) {
+            contadorTotal++;
+            y = JOptionPane.showConfirmDialog(null, (contadorTotal) + " INICIAR VOTACION ");
+            if (y == 0) {
+                String eleccion;
+                eleccion = (String) JOptionPane.showInputDialog(null, "SELECCIONE SU FUNCION", "CIUDADANOS",
+                        JOptionPane.DEFAULT_OPTION, null, ob, ob[0]);
+                segunSuFuncion(eleccion);
+            } else {
+                for (int i = 1; i <= 4; i++) {
+                    impresionDeDatosS(i);
+                }
+            }
+        }
+        System.out.println("");
+        impreObser();
+        totalVotos();
+    }
+
+    public void segunSuFuncion(String opcion) {
+        contadorTotal = contadorTotal + 1;
+        if ("VOTO".equals(opcion)) {
+            String sec;
+            sec = (String) JOptionPane.showInputDialog(null, "SELECCIONE SU SECCION", "SECCION CIUDADANO",
+                    JOptionPane.DEFAULT_OPTION, null, seccion, seccion[0]);
+            switch (sec) {
+                case ("S1"):
+                    seccion1conteo1(partido());
+                    break;
+                case ("S2"):
+                    seccion2conteo2(partido());
+                    break;
+                case ("S3"):
+                    seccion3conteo3(partido());
+                    break;
+                case ("S4"):
+                    seccion4conteo4(partido());
+                    break;
+                case ("S5"):
+                    seccion5conteo5(partido());
+                    break;
+            }
+        } else if ("OBSERVADOR".equals(opcion)) {
+            contador = contador + 1;
+            if (contador <= 3) {
+                observadores[contador] = JOptionPane.showInputDialog("INGRESE SU NOMBRE:");
+            } else {
+                JOptionPane.showMessageDialog(null, "LIMITE ALCANZADO DE OBSERVADORES");
+            }
+
+        }
+    }
+
+    public String partido() {
+        String pas5;
+        pas5 = (String) JOptionPane.showInputDialog(null, "SELECCIONE UN PARTIDO POLITICO", "VOTO", JOptionPane.DEFAULT_OPTION, null, partidoPolitico, partidoPolitico[0]);
+        return pas5;
+    }
+
+    public void seccion1conteo1(String opc) {
+        if ("PRI".equals(opc)) {
+            S1[0] = S1[0] + 1;
+        } else if ("PRD".equals(opc)) {
+            S1[1] = S1[1] + 1;
+        } else if ("PAN".equals(opc)) {
+            S1[2] = S1[2] + 1;
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE CONTAR");
+        }
+    }
+
+    public void seccion2conteo2(String opc2) {
+        if ("PRI".equals(opc2)) {
+            S2[0] = S2[0] + 1;
+        } else if ("PRD".equals(opc2)) {
+            S2[1] = S2[1] + 1;
+        } else if ("PAN".equals(opc2)) {
+            S2[2] = S2[2] + 1;
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE CONTAR");
+        }
+    }
+
+    public void seccion3conteo3(String opc3) {
+        if ("PRI".equals(opc3)) {
+            S3[0] = S3[0] + 1;
+        } else if ("PRD".equals(opc3)) {
+            S3[1] = S3[1] + 1;
+        } else if ("PAN".equals(opc3)) {
+            S3[2] = S3[2] + 1;
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE CONTAR");
+        }
+    }
+
+    public void seccion4conteo4(String opc4) {
+        if ("PRI".equals(opc4)) {
+            S4[0] = S4[0] + 1;
+        } else if ("PRD".equals(opc4)) {
+            S4[1] = S4[1] + 1;
+        } else if ("PAN".equals(opc4)) {
+            S4[2] = S4[2] + 1;
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE CONTAR");
+        }
+    }
+
+    public void seccion5conteo5(String opc5) {
+        if ("PRI".equals(opc5)) {
+            S5[0] = S5[0] + 1;
+        } else if ("PRD".equals(opc5)) {
+            S5[1] = S5[1] + 1;
+        } else if ("PAN".equals(opc5)) {
+            S5[2] = S5[2] + 1;
+        } else {
+            JOptionPane.showMessageDialog(null, "NO SE PUEDE CONTAR");
+        }
+    }
+
+    void impresionDeDatosS(int opcionSeccion) {
+        int[] O1 = new int[4];
+
+        if (opcionSeccion == 1) {
+            O1[0] = S1[0] + 0;
+            O1[1] = S1[1] + 0;
+            O1[2] = S1[2] + 0;
+        } else if (opcionSeccion == 2) {
+            O1[0] = S2[0] + 0;
+            O1[1] = S2[1] + 0;
+            O1[2] = S2[2] + 0;
+        } else if (opcionSeccion == 3) {
+            O1[0] = S3[0] + 0;
+            O1[1] = S3[1] + 0;
+            O1[2] = S3[2] + 0;
+        } else if (opcionSeccion == 4) {
+            O1[0] = S4[0] + 0;
+            O1[1] = S4[1] + 0;
+            O1[2] = S4[2] + 0;
+        } else if (opcionSeccion == 5) {
+            O1[0] = S5[0] + 0;
+            O1[1] = S5[1] + 0;
+            O1[2] = S5[2] + 0;
+        } else {
+            System.out.println("NO EXUSTE LA OPCION");
+        }
+        System.out.println("");
+        System.out.println("SECCION "+opcionSeccion);
+        System.out.print("PRI " + O1[0] + " VOTOS   /  ");
+        System.out.print("  /PRD " + O1[1] + " VOTOS   /  ");
+        System.out.print("  /PAN " + O1[2] + " VOTOS   /  ");
+
+        if (O1[0] == O1[1] && O1[0] == O1[2] && O1[1] == O1[2]) {
+            System.out.print(" /3 IGUALES /");
+        } else {
+            if (O1[0] == O1[1] && O1[2] > O1[0]) {
+                System.out.print(" /EMPATES :PRI y PRD /");
+                System.out.print(" /GANADOR : PAN /");
+            } else if (O1[0] == O1[1]) {
+                System.out.print(" /PRI y PRD /");
+                System.out.print(" /EMPATES 0 /");
+            }
+            if (O1[0] == O1[2] && O1[1] > O1[0]) {
+                System.out.print(" /EMPATES :PRI y PAN /");
+                System.out.print(" /GANADOR : PRD /");
+            } else if (O1[0] == O1[2]) {
+                System.out.print(" /EMPATES :PRI y PAN /");
+                System.out.print(" /EMPATES 0 /");
+            }
+            if (O1[2] == O1[1] && O1[0] > O1[1]) {
+                System.out.print(" /EMPATES :PAN y PRD /");
+                System.out.print(" /GANADOR : PRI /");
+            } else if (O1[2] == O1[1]) {
+                System.out.print(" /EMPATES :PAN y PRD /");
+                System.out.print(" /EMPATES 0 /");
+            }
+            if (O1[0] != O1[1] && O1[0] != O1[2] && O1[2] != O1[1]) {
+                System.out.print(O1[0] > O1[1] && O1[0] > O1[2] ? " /GANADOR :PRI /" : O1[1] > O1[0] && O1[1] > O1[2] ? " /GANADOR :PAN /" : " /GANADOR :PRD /");
+            }
+        }
+        System.out.println("");
+    }
+
+    void impreObser() {
+        for (int i = 0; i <= contador; i++) {
+            System.out.println("OBSERVADOR :" + observadores[i]);
+        }
+    }
+
+    public int suma() {
+        totalbotos = contadorTotal - contador;
+        return totalbotos;
+    }
+
+    void totalVotos() {
+        System.out.println("TOTAL DE VOTOS :" + suma());
+        System.out.println("TOTAL DE OBSERVADORES :" + contador);
+    }
+}
